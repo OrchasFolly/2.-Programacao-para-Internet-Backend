@@ -72,7 +72,7 @@ export default class ClienteDB{
     }
     async consultar(){
         const conexao = await conectar();
-        const sql = `SELECT * FROM pacote ORDER BY nome`;
+        const sql = `SELECT * FROM pacote ORDER BY nomeCliente`;
         const [registros, campos] = await conexao.execute(sql);
         await conexao.release();
         let listaClientes = [];
