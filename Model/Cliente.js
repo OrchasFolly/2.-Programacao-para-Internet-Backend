@@ -1,69 +1,71 @@
-import ClienteDB from "../DataBase/ClienteBD.js";
-
+import ClienteDB from "../DataBase/clienteDB.js";
 export default class PacoteViagem {
-    // Atributos de cliente
-    // Definição de atributos privados e seus metodos
-    #cpf;
+
+    // atributos do pacote de viagem
+    // Definição de atributos privados e seus respectivos métodos de acesso públicos
+    #cpf;  // # é utilizado pelo javascript para definir que um atributo é privado
     #nomeCliente;
     #nomePacote;
-    #data;
+    #dataPartida;
     #endereco;
 
-    constructor(cpf, nomeCli, nomePocote, data, endereco){
+    constructor(cpf, nomeCliente, nomePacote, dataPartida, endereco) {
         this.#cpf = cpf;
-        this.#nomeCliente = nomeCli;
-        this.#nomePacote = nomePocote;
-        this.#data = data;
+        this.#nomeCliente = nomeCliente;
+        this.#nomePacote = nomePacote;
+        this.#dataPartida = dataPartida;
         this.#endereco = endereco;
     }
 
-    get cpf(){
-        return this.#cpf;
+    
+
+    get cpf() {
+        return this.#cpf; //this se refere ao próprio objeto
     }
 
-    set cpf(novoCpf){
+    set cpf(novoCpf) {
         this.#cpf = novoCpf;
     }
 
-    get nomeCli(){
+    get nomeCliente() {
         return this.#nomeCliente;
     }
 
-    set nomeCli(novoNome){
+    set nomeCliente(novoNome) {    
         this.#nomeCliente = novoNome;
     }
 
-    get nomePocote(){
+    get nomePacote() {
         return this.#nomePacote;
     }
 
-    set nomePocote(novoPacote){
+    set nomePacote(novoPacote) {    
         this.#nomePacote = novoPacote;
     }
 
-    get data(){
-        return this.#data;
+    get dataPartida() {
+        return this.#dataPartida;
     }
 
-    set data(novaData){
-        this.#data = novaData;
+    set dataPartida(novaData) {
+        this.#dataPartida = novaData;
     }
 
-    get endereco(){
+    get endereco() {
         return this.#endereco;
     }
 
-    set endereco(novoEndereco){
+    set endereco(novoEndereco) {
         this.#endereco = novoEndereco;
     }
 
-    // Formato JSON
+    //formato JSON de um objeto
     toJSON(){
         return {
             "cpf": this.#cpf,
             "nomeCliente": this.#nomeCliente,
             "nomePacote": this.#nomePacote,
-            "data": this.#data,
+            "dataPartida": this.#dataPartida,
             "endereco": this.#endereco,
         }
     }
@@ -73,9 +75,9 @@ export default class PacoteViagem {
         cliDB.gravar(this);
     }
 
-    async editar(){
+    async alterar(){
         const cliDB = new ClienteDB();
-        cliDB.editar(this);
+        cliDB.alterar(this);
     }
 
     async excluir(){
@@ -87,4 +89,5 @@ export default class PacoteViagem {
         const cliDB = new ClienteDB();
         return await cliDB.consultar(this);
     }
+
 }

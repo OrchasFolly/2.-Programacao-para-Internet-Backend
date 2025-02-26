@@ -1,88 +1,91 @@
 import conectar from "./conexao.js";
-import PacoteViagem from "../Model/Cliente.js"
+import PacoteViagem from "../Model/cliente.js";
 export default class ClienteDB{
 
     constructor(){
         this.init();
     }
-    // Comunicação com uma aplicação externa (banco de dados)
-    // Necessário utilizar métodos assíncronos (atrasar execução)
+    // Comunicação com a aplicação externa (banco de dados)
+    // Utilizar métodos assíncronos
+    // Métodos assíncronos atrasam a resposta
+    // A resposta depende do banco de dados
     async init(){
         try {
             const conexao = await conectar();
-            const sql = `CREATE TABLE IF NOT EXISTS cliente (
+            const sql = `CREATE TABLE IF NOT EXISTS pacote (
                 cpf VARCHAR(14) NOT NULL PRIMARY KEY,
                 nomeCliente VARCHAR(100) NOT NULL,
-                nomePacote VARCHAR(100) NOT NULL,
-                dataC DATETIME,
+                nomePacote VARCHAR(150) NOT NULL,
+                dataPartida VARCHAR(20) NOT NULL,
                 endereco VARCHAR(100) NOT NULL
-            )`
+            )`;
             await conexao.execute(sql);
         } catch ( erro ) {
-            console.log(`Erro ao iniciar a tabela do banco de dados: ${erro}`);
+            console.log("Erro ao iniciar a tabela cliente:" + erro);
         }
+
     }
 
     async gravar(cliente){
         if (cliente instanceof PacoteViagem){
             const conexao = await conectar();
-            const sql = `INSERT INTO cliente (cpf, nomeCliente, nomePacote, dataC, endereco)
-                         VALUES(?, ?, ?, ?, ?)`;
+            const sql = `INSERT INTO pacote (cpf, nomeCliente, nomePacote, dataPartida, endereco)
+                         VALUES ( ?, ?, ?, ?, ? )`;
             const parametros = [
                 cliente.cpf,
                 cliente.nomeCliente,
                 cliente.nomePacote,
-                cliente.dataC,
+                cliente.dataPartida,
                 cliente.endereco
             ];
-            await conexao.execute(sql, parametros); // Executando
-            await conexao.release(); // Liberando conexão
+
+            await conexao.execute(sql, parametros);
+            await conexao.release(); // Liberar a conexão de volta para o pool
+                         
         }
     }
-
-    async editar(cliente){
+    async alterar(cliente){
         if (cliente instanceof PacoteViagem){
             const conexao = await conectar();
-            const sql = `UPDATE cliente SET 
-                         nomeCliente = ?, nomePacote = ?, dataC = ?, endereco = ?
-                         WHERE cpf = ?`;
+            const sql = `UPDATE pacote SET 
+                         nomeCliente = ?, nomePacote = ?, dataPartida = ?, endereco = ?
+                         WHERE cpf = ?`;            
             const parametros = [
                 cliente.nomeCliente,
                 cliente.nomePacote,
-                cliente.dataC,
+                cliente.dataPartida,
                 cliente.endereco,
-                cliente.cpf,
+                cliente.cpf
             ];
             await conexao.execute(sql, parametros);
             await conexao.release();
         }
     }
-
     async excluir(cliente){
         if (cliente instanceof PacoteViagem){
             const conexao = await conectar();
-            const sql = `DELETE FROM cliente WHERE cpf = ?`;
+            const sql = `DELETE FROM pacote WHERE cpf = ?`;
             const parametros = [cliente.cpf];
             await conexao.execute(sql, parametros);
             await conexao.release();
         }
     }
-
-    async consultar(cliente){
+    async consultar(){
         const conexao = await conectar();
-        const sql = `SELECT * FROM cliente ORDER BY nomeCliente`;
+        const sql = `SELECT * FROM pacote ORDER BY nome`;
         const [registros, campos] = await conexao.execute(sql);
         await conexao.release();
         let listaClientes = [];
         for (const registro of registros){
             const cliente = new PacoteViagem(registro.cpf,
-                                             registro.nomeCliente,
-                                             registro.nomePacote,
-                                             registro.dataC,
-                                             registro.endereco
-                                            );
+                                        registro.nomeCliente,
+                                        registro.nomePacote,
+                                        registro.dataPartida,
+                                        registro.endereco
+                                        );
             listaClientes.push(cliente);
+                                    
         }
-        return linhas;
+        return listaClientes;
     }
 }

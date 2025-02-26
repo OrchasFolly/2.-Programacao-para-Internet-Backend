@@ -1,7 +1,7 @@
 import mysql from "mysql2/promise";
 
 export default async function conectar() {
-    // Criando um "pool" de conexões
+    //criar um pool de conexões
     if (global.poolConexoes){
         return await global.poolConexoes.getConnection();
     } else {
@@ -19,7 +19,8 @@ export default async function conectar() {
             enableKeepAlive: true,
             keepAliveInitialDelay: 0,
           });
-
+        
           return await global.poolConexoes.getConnection();
     }
+
 }
