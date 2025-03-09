@@ -1,18 +1,18 @@
 import PacoteViagem from "./Model/cliente.js";
 
 
-var cliente = new PacoteViagem("232.121.231-21", 
-                          "Lucas Nelson", 
-                          "Feriado Especial",
+var cliente = new PacoteViagem("111.111.111-11", 
+                          "Exemplo", 
+                          "Ex Feriado Especial",
                           "14/02/2025",
                           "Aeroporto de Presidente Prudente");
 
 // Gravar pacote no banco de dados
-// cliente.gravar().then(() => {
-//     console.log("Pacote gravado com sucesso!");
-// }).catch((erro) => {
-//     console.log("Erro ao gravar o pacote: " + erro);
-// });
+cliente.gravar().then(() => {
+    console.log("Pacote gravado com sucesso!");
+}).catch((erro) => {
+    console.log("Erro ao gravar o pacote: " + erro);
+});
 
 // Editar pacote no banco de dados
 // cliente.alterar().then(() => {
@@ -22,11 +22,11 @@ var cliente = new PacoteViagem("232.121.231-21",
 // });
 
 // Excluindo pacote do banco de dados
-cliente.excluir().then(() => {
-   console.log("Pacote excluido com sucesso!");
-}).catch((erro) => {
-   console.log("Erro ao excluir o pacote: " + erro);
-})
+// cliente.excluir().then(() => {
+//    console.log("Pacote excluido com sucesso!");
+// }).catch((erro) => {
+//    console.log("Erro ao excluir o pacote: " + erro);
+// })
 
 // Recuperando informação do banco de dados
 // cliente.consultar().then((listaClientes) => {
