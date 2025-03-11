@@ -8,11 +8,11 @@ var cliente = new PacoteViagem("111.111.111-11",
                           "Aeroporto de Presidente Prudente");
 
 // Gravar pacote no banco de dados
-cliente.gravar().then(() => {
-    console.log("Pacote gravado com sucesso!");
-}).catch((erro) => {
-    console.log("Erro ao gravar o pacote: " + erro);
-});
+// cliente.gravar().then(() => {
+//     console.log("Pacote gravado com sucesso!");
+// }).catch((erro) => {
+//     console.log("Erro ao gravar o pacote: " + erro);
+// });
 
 // Editar pacote no banco de dados
 // cliente.alterar().then(() => {
