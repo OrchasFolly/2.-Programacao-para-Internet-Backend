@@ -1,11 +1,26 @@
-import PacoteViagem from "./Model/cliente.js";
+import express from 'express';
+import rotaCliente from './Rotas/rotaC.js';
+const app = express();
+
+// Configurar para aceitar objetos aninhados
+app.use(express.urlencoded({extended:false}));
+
+// Configurar para processar formato JSON
+app.use(express.json());
+app.use('/clientes', rotaCliente);
+app.listen(3340,()=>{
+    console.log("BackEnd ouvindo em http://localhost:3340");
+});
 
 
-var cliente = new PacoteViagem("111.111.111-11", 
-                          "Exemplo", 
-                          "Ex Feriado Especial",
-                          "14/02/2025",
-                          "Aeroporto de Presidente Prudente");
+// import PacoteViagem from "./Model/cliente.js";
+
+
+// var cliente = new PacoteViagem("222.222.222-22", 
+//                           "Exemplo", 
+//                           "Ex Feriado Especial",
+//                           "14/02/2025",
+//                           "Aeroporto de Presidente Prudente");
 
 // Gravar pacote no banco de dados
 // cliente.gravar().then(() => {
