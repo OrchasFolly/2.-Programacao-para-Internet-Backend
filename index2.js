@@ -12,7 +12,7 @@ cliente.gravar().then(() => {
     console.log("Pacote gravado com sucesso!");
 }).catch((erro) => {
     console.log("Erro ao gravar o pacote: " + erro);
-}); // Testando
+}); // Testando 2
 
 // Editar pacote no banco de dados
 // cliente.alterar().then(() => {
