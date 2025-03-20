@@ -123,20 +123,33 @@ export default class ClienteControl{
         }
     }
 
-    // Consultar dados
+    // Consultar todos os dados
     consultar(requisicao, resposta){
         resposta.type('application/json');
 
         if(requisicao.method === "GET"){
             const cliente = new PacoteViagem();
-            cliente.consultar('').then((listaClientes) => {
-                    resposta.status(200).json(listaClientes);
-            }).catch((erro) => {
-                resposta.status(500).json({
-                    status: false,
-                    mensagem: erro.message
+
+            if (requisicao.params.cpf){
+                cliente.consultarPeloCPF(requisicao.params.cpf).then((listaClientes) => {
+                        resposta.status(200).json(listaClientes);
+                }).catch((erro) => {
+                    resposta.status(500).json({
+                        status: false,
+                        mensagem: erro.message
+                    });
                 });
-            });
+            }
+            else{
+                cliente.consultar('').then((listaClientes) => {
+                        resposta.status(200).json(listaClientes);
+                }).catch((erro) => {
+                    resposta.status(500).json({
+                        status: false,
+                        mensagem: erro.message
+                    });
+                });
+            }
         }
         else{
             resposta.status(400).json({

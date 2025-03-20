@@ -44,6 +44,7 @@ export default class ClienteDB{
                          
         }
     }
+
     async alterar(cliente){
         if (cliente instanceof PacoteViagem){
             const conexao = await conectar();
@@ -61,6 +62,7 @@ export default class ClienteDB{
             await conexao.release();
         }
     }
+
     async excluir(cliente){
         if (cliente instanceof PacoteViagem){
             const conexao = await conectar();
@@ -70,10 +72,30 @@ export default class ClienteDB{
             await conexao.release();
         }
     }
+
     async consultar(){
         const conexao = await conectar();
         const sql = `SELECT * FROM pacote ORDER BY nomeCliente`;
         const [registros, campos] = await conexao.execute(sql);
+        await conexao.release();
+        let listaClientes = [];
+        for (const registro of registros){
+            const cliente = new PacoteViagem(registro.cpf,
+                                        registro.nomeCliente,
+                                        registro.nomePacote,
+                                        registro.dataPartida,
+                                        registro.endereco
+                                        );
+            listaClientes.push(cliente);
+                                    
+        }
+        return listaClientes;
+    }
+    
+    async consultarPeloCPF(cpf){
+        const conexao = await conectar();
+        const sql = `SELECT * FROM pacote WHERE cpf = ?`;
+        const [registros, campos] = await conexao.execute(sql, [cpf]);
         await conexao.release();
         let listaClientes = [];
         for (const registro of registros){

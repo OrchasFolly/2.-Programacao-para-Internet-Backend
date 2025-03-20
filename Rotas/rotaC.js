@@ -7,7 +7,8 @@ const clienteControl = new ClienteControl();
 rotaCliente.post('/', clienteControl.gravar)
 .put('/',clienteControl.alterar)
 .delete('/',clienteControl.excluir)
-.get('/',clienteControl.consultar);
+.get('/',clienteControl.consultar)
+.get('/:cpf',clienteControl.consultar);
 
 export default rotaCliente;
 

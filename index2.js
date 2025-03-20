@@ -1,20 +1,66 @@
 import express from 'express';
+import session from "express-session";
+import autenticar from "./secure/auten.js";
 import rotaCliente from './Rotas/rotaC.js';
+
+const porta = 3400;
+const localhost = "0.0.0.0"; // Disponível para todos os dispositivos (Domínio)
 const app = express();
 
 // Configurar para aceitar objetos aninhados
 app.use(express.urlencoded({extended:false}));
 
-// Configurar para processar formato JSON
 app.use(express.json());
+
+app.use(session({
+    // Para fins acadêmicos
+    secret: "Dk24DFE23vFE3gCFF434Se2Cr42DEX",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 10 // Minutos maximos de sessão
+    }
+}));
+
 app.use('/clientes', rotaCliente);
-app.listen(3340,()=>{
-    console.log("BackEnd ouvindo em http://localhost:3340");
+
+// Oferecer um recurso de login
+app.get("/login", (req, resp) => {
+    resp.redirect("/login.html");
+});
+
+app.post("/login", (req, resp) => {
+    const user = req.body.nameValid;
+    const pass = req.body.passValid;
+    if(user == "Admin" && pass == "Admin"){
+        req.session.autenticado = true;
+        resp.redirect("/index.html");
+    } else{
+        resp.redirect("/login.html");
+    }
+});
+
+app.get("/logout", (req, resp) => {
+    req.session.autenticado = false;
+    resp.redirect("/index.html");
+});
+
+//erro: http://localhost:3000/publico/index.html
+//certo: http://localhost:3000/index.html
+app.use(express.static("./public"));
+
+// autenticar é um middleware
+app.use(autenticar, express.static("./private"));
+
+// Configurar para processar formato JSON
+// MOVER PARA CIMA EM CASO DE TESTES NO POSTMAN
+
+app.listen(porta,localhost, ()=>{
+    console.log(`Backend e Servidor rodando em http://${localhost}:${porta}`);
 });
 
 
 // import PacoteViagem from "./Model/cliente.js";
-
 
 // var cliente = new PacoteViagem("222.222.222-22", 
 //                           "Exemplo", 

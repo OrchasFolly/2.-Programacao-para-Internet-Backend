@@ -90,4 +90,8 @@ export default class PacoteViagem {
         return await cliDB.consultar(this);
     }
 
+    async consultarPeloCPF(cpf){
+        const cliDB = new ClienteDB();
+        return await cliDB.consultarPeloCPF(cpf);
+    }
 }
