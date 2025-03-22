@@ -53,7 +53,6 @@ app.use(express.static("./public"));
 app.use(autenticar, express.static("./private"));
 
 // Configurar para processar formato JSON
-// MOVER PARA CIMA EM CASO DE TESTES NO POSTMAN
 
 app.listen(porta,localhost, ()=>{
     console.log(`Backend e Servidor rodando em http://${localhost}:${porta}`);

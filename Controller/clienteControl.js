@@ -132,7 +132,12 @@ export default class ClienteControl{
 
             if (requisicao.params.cpf){
                 cliente.consultarPeloCPF(requisicao.params.cpf).then((listaClientes) => {
-                        resposta.status(200).json(listaClientes);
+                        resposta.status(200).json(
+                            {
+                                "status": true,
+                                "clientes": listaClientes
+                            }
+                        );
                 }).catch((erro) => {
                     resposta.status(500).json({
                         status: false,
@@ -142,7 +147,12 @@ export default class ClienteControl{
             }
             else{
                 cliente.consultar('').then((listaClientes) => {
-                        resposta.status(200).json(listaClientes);
+                        resposta.status(200).json(
+                            {
+                                "status": true,
+                                "clientes": listaClientes
+                            }
+                        );
                 }).catch((erro) => {
                     resposta.status(500).json({
                         status: false,

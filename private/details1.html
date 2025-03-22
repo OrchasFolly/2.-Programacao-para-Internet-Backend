@@ -38,57 +38,63 @@
                                 <p>Data de partida: 14/02/2025</p>
                                 <p>Local de partida: Aeroporto de Presidente Prudente</p>
                                 <p>Lugares disponíveis: 30</p>
-                                <form method="POST" action="/cadastrarPacote" class="needs-validation" novalidate>
-                                    <div class="form-group">
-                                        <label for="loginName">Seu CPF</label>
-                                        <input type="text" class="form-control" id="cpfRegister" name="cpfValid" value="" required>
-                                        <div class="valid-feedback">
-                                            OK!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Por favor, informe seu CPF!
-                                        </div>
-                                        
-                                        <label for="loginName">Nome</label>
-                                        <input type="text" class="form-control" id="cliRegister" name="cliValid" value="" required>
-                                        <div class="valid-feedback">
-                                            OK!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Por favor, informe seu nome completo!
-                                        </div>
-
-                                        <label for="loginName">Pacote</label>
-                                        <input type="text" class="form-control" id="packRegister" name="packValid" value="Pacote: Feriado Especial" disabled>
-                                        <label for="loginName">Data de partida</label>
-                                        <input type="text" class="form-control" id="dateRegister" name="dateValid" value="14/02/2025" disabled>
-
-                                        <label for="loginName">Endereço</label>
-                                        <input type="text" class="form-control" id="endRegister" name="endValid" value="" required>
-                                        <div class="valid-feedback">
-                                            OK!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Por favor, informe o endereço!
-                                        </div>
-
-                                        <div class="counter-base">
-                                            <p class="text-margin">Número de lugares:</p>
-                                            <button type="button" id="up" class="btn-up">+</button>
-                                            <span id="value">1</span>
-                                            <button type="button" id="down" class="btn-down">-</button>
-                                        </div>
-                                        <div class="totalValue">
-                                            <h4>R$:</h4>
-                                            <h4 id="money">300</h4>
-                                        </div>
-                                        <div class="btn-align">
-                                            <button type="submit" class="btn-details" href="#">Comprar</button>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                             <div class="description-box"></div>
+                        </div>
+                        <div class="align-margin-form">
+                            <form id="formCliente" method="POST" action="#" class="needs-validation" novalidate>
+                                <div class="form-group">
+                                    <label for="loginName">Seu CPF</label>
+                                    <input type="text" class="form-control" id="cpfRegister" name="cpfValid" value="" required>
+                                    <div class="valid-feedback">
+                                        OK!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, informe seu CPF!
+                                    </div>
+                                    
+                                    <label for="loginName">Nome</label>
+                                    <input type="text" class="form-control" id="cliRegister" name="cliValid" value="" required>
+                                    <div class="valid-feedback">
+                                        OK!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, informe seu nome completo!
+                                    </div>
+
+                                    <label for="loginName">Pacote</label>
+                                    <input type="text" class="form-control" id="packRegister" name="packValid" value="Pacote: Feriado Especial" disabled>
+                                    <label for="loginName">Data de partida</label>
+                                    <input type="text" class="form-control" id="dateRegister" name="dateValid" value="14/02/2025" disabled>
+
+                                    <label for="loginName">Endereço</label>
+                                    <input type="text" class="form-control" id="endRegister" name="endValid" value="" required>
+                                    <div class="valid-feedback">
+                                        OK!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, informe o endereço!
+                                    </div>
+
+                                    <div class="counter-base">
+                                        <p class="text-margin">Número de lugares:</p>
+                                        <button type="button" id="up" class="btn-up">+</button>
+                                        <span id="value">1</span>
+                                        <button type="button" id="down" class="btn-down">-</button>
+                                    </div>
+                                    <div class="totalValue">
+                                        <h4>R$:</h4>
+                                        <h4 id="money">300</h4>
+                                    </div>
+                                    <div class="btn-align">
+                                        <button type="submit" id="cadastrar" class="btn btn-details btn-primary" href="#">Cadastrar</button>
+                                        <button type="submit" id="atualizar" class="btn btn-md btn-warning" href="#" disabled>Editar</button>
+                                        <button type="submit" id="excluir" class="btn btn-details btn-danger" href="#" disabled>Deletar</button>
+                                    </div>
+                                </div>
+                                <div id="alert-message"></div>
+                            </form>
+                            <div style="background-color: aliceblue; text-align: center;" id="get-tab"></div>
                         </div>
                     </div>
                 </div>
@@ -105,8 +111,8 @@
         </footer>
     </div>
 
-    <script src="Scripts/count.js"></script>
-    <script src="Scripts/validated.js"></script>
+    <script src="./Scripts/count.js"></script>
+    <script src="./Scripts/main_script.js"></script>
     <!-- Bootstrap JS -->
     <!-- 1. jQuery, 2. Popper.js, 3. Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
