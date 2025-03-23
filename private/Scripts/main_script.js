@@ -117,8 +117,8 @@ function mostrarMensagem(mensagem, tipo="success"){
     }, 5000);
 }
 
-function mostrarTabela(){
-    fetch(endpoint, {
+function mostrarTabela(cpfGET = ""){
+    fetch(`http://localhost:3400/clientes/${cpfGET}`, {
         method: "GET"
     }).then((resposta) => {
         return resposta.json();

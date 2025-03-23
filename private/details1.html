@@ -91,6 +91,11 @@
                                         <button type="submit" id="atualizar" class="btn btn-details btn-warning" href="#" disabled>Editar</button>
                                         <button type="submit" id="excluir" class="btn btn-details btn-danger" href="#" disabled>Deletar</button>
                                     </div>
+                                    <div style="background-color: aliceblue; padding: 50px;">
+                                    <label for="loginName">Encontrar pelo CPF</label>
+                                        <input type="text" class="form-control" id="cpfGet" name="cpfValid" value="">
+                                        <button type="button" id="getPeloCPF" class="btn btn-details btn-primary" onclick="mostrarTabela(document.getElementById('cpfGet').value)">Encontrar</button>
+                                    </div>
                                 </div>
                                 <div id="alert-message"></div>
                             </form>
