@@ -39,3 +39,5 @@ btnDown.addEventListener("mousedown", () =>{
 
 
 document.addEventListener("mouseup", () => clearInterval(interval))
+
+

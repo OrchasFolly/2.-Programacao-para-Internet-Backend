@@ -99,10 +99,7 @@ body {
 }
 .btn-details {
     text-align: center;
-    border-radius: 5px;
-    border: solid 0px;
-    font: bold;
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
     margin: 5px;
 }
@@ -210,5 +207,5 @@ body {
 }
 a:hover {
     color: white;
-    background-color: rgb(37, 37, 255);
+    background-color: rgb(7, 86, 233);
   }
